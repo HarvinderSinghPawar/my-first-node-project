@@ -1,6 +1,8 @@
-const express = require('express')
-const path = require('path')
-const app = express()
+const express = require('express');
+const path = require('path');
+const app = express();
+const mainRouter = require('./routes/index');
+
 const port = 3000
 
 // view engine setup
@@ -10,11 +12,8 @@ app.set('view engine', 'ejs');
 
 // public folder 
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(mainRouter);
 
-app.get('/', (req, res) => {
-    // res.send('Hello Harvinder! How are you ?')
-    res.render('index');
-})
 
 // app.listen(port, () => {
 //     console.log(`Example app listening on port ${port}`)
