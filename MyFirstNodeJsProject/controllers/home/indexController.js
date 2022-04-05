@@ -1,3 +1,4 @@
+const { json } = require('express/lib/response');
 const { TABLES } = require('../../config/constants');
 var con = require('../../models/dbconnection');
 
@@ -36,14 +37,16 @@ module.exports = {
          */
         login: function(req, res, next) {
             try {
-                let email = "admin@rtsgerdgf.com";
+                let name = "Harvinder Singh";
                 // sqlQuery = "SELECT * FROM " + TABLES.EMPLOYEE + " WHERE email = ?";
-                sqlQuery = "SELECT * FROM fgc_db.fgc_employee"
-                let sqlArray = [email];
+                // sqlQuery = "SELECT * FROM my_first_node_db." + TABLES.EMPLOYEE
+                sqlQuery = "SELECT * FROM " + TABLES.EMPLOYEE + " WHERE name = ?";
+                let sqlArray = [name];
+                // sqlQuery = "SELECT * FROM my_first_node_db.employee_detials"
 
                 con.query(sqlQuery, sqlArray, async function(error, result) {
                     if (error) {
-                        console.log("Threr is error-----", error)
+                        console.log(error)
                         res.render('index', {
                             layout: false,
                             title: "Educational registration form",
@@ -60,6 +63,14 @@ module.exports = {
                         }
                         res.render('index', data);
                         console.log(result)
+                        for (let i = 0; i < result.length; i++) {
+                            console.log(result[i].id);
+                            console.log(result[i].name);
+                            console.log(result[i].dob);
+                            console.log(result[i].mobile);
+                            console.log(result[i].file);
+                            console.log(result[i].country);
+                        }
                     }
                 });
 

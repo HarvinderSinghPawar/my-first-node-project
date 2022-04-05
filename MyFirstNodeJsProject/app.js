@@ -1,10 +1,11 @@
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const mysql = require('mysql');
 const app = express();
 const mainRouter = require('./routes/index');
 
-const port = 3009
+const port = 3000
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
